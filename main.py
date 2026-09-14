@@ -17,16 +17,28 @@ def criarArq():
             escolhaArq = str(input("Deseja criar este arquivo dentro de algum diretório já existente? S-N \n")).upper()
 
             if escolhaArq == "S":
-
                 diretorios = []
                 for item in os.listdir("."):
                     if os.path.isdir(item):
                         diretorios.append(item)
-                print(diretorios)
-                print("Diretórios disponíveis. ")
+
+                print(f"\n {diretorios} \n Diretórios disponíveis. ")
                 nomeDir = str(input("Digite qual dos diretórios acima irá receber o arquivo."))
+                if nomeDir in diretorios:
+                    nomeArq = input("\n Digite o nome do arquivo ")
+                    caminho = os.path.join(nomeDir, nomeArq)
+                    with open(caminho, "w") as arquivo:
+                        print(f"Arquivo '{nomeArq}',criado com sucesso dentro do diretório '{nomeDir}'")
+                        break
+                else:
+                    print("Diretório não existe")
+
             elif escolhaArq == "N":
-                print("asd")
+                nomeArq = input("\n Digite o nome do arquivo ")
+                caminho = os.path.join(nomeArq)
+                with open(caminho, "w") as arquivo:
+                    print(f"\n Arquivo '{nomeArq}',criado com sucesso.")
+                    break
             else:
                 print("asd")
         except ValueError:
