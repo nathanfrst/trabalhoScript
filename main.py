@@ -1,4 +1,5 @@
 import os
+
 def criarDir():
     criado = False
     while not criado: 
@@ -24,6 +25,7 @@ def criarArq():
 
                 print(f"\n {diretorios} \n Diretórios disponíveis. ")
                 nomeDir = str(input("Digite qual dos diretórios acima irá receber o arquivo."))
+
                 if nomeDir in diretorios:
                     nomeArq = input("\n Digite o nome do arquivo ")
                     caminho = os.path.join(nomeDir, nomeArq)
@@ -40,13 +42,19 @@ def criarArq():
                     print(f"\n Arquivo '{nomeArq}',criado com sucesso.")
                     break
             else:
-                print("asd")
+                print("Ocorreu um erro tente novamente.")
+
         except ValueError:
             print("Por favor digite uma opção válida (S-N) \n")
 
 
 def excArq():
-    print("C")
+    arquivos = []
+    
+    print(arquivos)
+    print("\n Arquivos disponiveis para a exclusão ")
+
+    escolhaArq_excluir = input("Digite qual arquivo você gostaria de excluir ")
                     
 while True: 
     try: 
