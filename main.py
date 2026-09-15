@@ -49,12 +49,62 @@ def criarArq():
 
 
 def excArq():
-    arquivos = []
-    
-    print(arquivos)
-    print("\n Arquivos disponiveis para a exclusão ")
+    while True:
+        try: #loopzin cachorro
+            escolhaExc = str(input("O arquivo está dentro de algum diretório? S-N \n")).upper()
+ 
+            if escolhaExc == "S": #so a lista dos diretorios que ta podendo usar
+                diretorios = []
+                for item in os.listdir("."):
+                    if os.path.isdir(item):
+                        diretorios.append(item)
+ 
+                print(f"\n {diretorios} \n Diretórios disponíveis. ") 
+                nomeDir = str(input("\n Digite em qual diretório está o arquivo: "))
+ 
+                while nomeDir not in diretorios: #loop caso o usuario queria zoar com minha face
+                    print("Diretório não encontrado, por favor tente novamente. \n")
+                    nomeDir = str(input("\n Digite em qual diretório está o arquivo: "))
+ 
+                arquivos = [] #arquivos do diretorio q escolheu
+                for item in os.listdir(nomeDir):
+                    if os.path.isfile(os.path.join(nomeDir, item)):
+                        arquivos.append(item)
+ 
+                print(f"\n {arquivos} \n Arquivos disponíveis para a exclusão ")
+                nomeArq = input("Digite qual arquivo você gostaria de excluir ")
+                caminho = os.path.join(nomeDir, nomeArq)
+ 
+                if nomeArq in arquivos:  #se ja tiver o arquivo, excluir sem pedir permissao
+                    os.remove(caminho)
+                    print(f"Arquivo '{nomeArq}' excluído com sucesso.")
+                else:
+                    print("Arquivo não encontrado.")
+                break
+ 
+            elif escolhaExc == "N": #nome dos arq q ta na pasta atual
+                arquivos = []
+                for item in os.listdir("."):
+                    if os.path.isfile(item):
+                        arquivos.append(item)
+ 
+                print(f"\n {arquivos} \n Arquivos disponíveis para a exclusão ")
+                nomeArq = input("Digite qual arquivo você gostaria de excluir ")
+ 
+                if nomeArq in arquivos:
+                    os.remove(nomeArq)
+                    print(f"Arquivo '{nomeArq}' excluído com sucesso.")
+                else:
+                    print("Arquivo não encontrado.")
+                break
+            else:
+                print("Ocorreu um erro tente novamente.")
+ 
+        except ValueError:
+            print("Por favor digite uma opção válida (S-N) \n")
 
-    escolhaArq_excluir = input("Digite qual arquivo você gostaria de excluir ")
+def lerArq():
+    print(".")
                     
 while True: 
     try: 
