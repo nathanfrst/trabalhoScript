@@ -1,8 +1,9 @@
 import os
 import platform
 import psutil
+import getpass
 
-ram = psutil.virtual_memory()
+print("Diretório atual:", os.getcwd())
 
 def criarDir():
     # Criar um diretório 
@@ -140,10 +141,13 @@ def lerArq():
 
 def infoComp():
     # Coleta as informações do computador
+
+    ram = psutil.virtual_memory() #Guarda os valores da memoria na variavel "ram"
+
     informacoes = (
         f"Sistema: {platform.system()}\n"
         f"Versão: {platform.release()}\n"
-        f"Usuário: {os.getlogin()}\n"
+        f"Usuário: {getpass.getuser()}\n"
         f"Arquitetura: {platform.machine()}\n"
         f"Processador: {platform.processor()}\n"
         f"RAM total: {ram.total}\n"
